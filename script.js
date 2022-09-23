@@ -81,7 +81,6 @@ const deleteBook = function(){
   
 
 
-
 addBook.addEventListener("click", addBookToLibrary);
 addBook.addEventListener("click", displayBooks);
 
