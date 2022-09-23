@@ -1,3 +1,5 @@
+const addBook = document.querySelector("#new-book")
+
 
 
 function Book(title,author,pages,read){
@@ -9,29 +11,26 @@ function Book(title,author,pages,read){
 
 }
 
-//manually set books
+//manually set book
 
 const TheHobbit = new Book("The Hobbit "," J.R.R Tolkien"," 295 pages"," not read yet")
-const TheHobbit2 = new Book("The Hobbit 2 "," J.R.R Tolkien 2 "," 2951 pages"," yes")
-const TheHobbit3 = new Book("The Hobbit 3"," J.R.R Tolkien 3"," 2925 pages"," not read yet")
 
 
 
-let myLibrary = [TheHobbit,TheHobbit2,TheHobbit3]
+let myLibrary = [TheHobbit]
+
 
 const addBookToLibrary = function()  {
 
-const title = prompt("Please put book name")
-const author = prompt("Please put author name")
-const pages = prompt("How many pages has the book")
-const read = prompt("did you read it already?")
+const item0 = prompt("Please put book name")
+const item1 = prompt("Please put author name")
+const item2 = prompt("How many pages has the book")
+const item3 = prompt("did you read it already?")
 
 
-let newBook = new Book(title,author,pages,read)
+let newBook = new Book(item0,item1,item2,item3)
 
 myLibrary.push(newBook)
-
-return "book added successfully"
 
 }
 
@@ -39,12 +38,23 @@ return "book added successfully"
 const displayBooks = function() {
 
     const table = document.querySelector("#books-table")
-    let newRow = document.createElement("tr");
+    const newRow = document.createElement("tr");
+
+    //delete row
+    const deleteRow = document.createElement("th")
+    newRow.appendChild(deleteRow)
+    
+    const deleteButton = document.createElement("button")
+    deleteButton.className="deleteButton"
+    deleteButton.textContent="X"
+    deleteRow.appendChild(deleteButton)
+
+    //select last book added
     let currentBook = myLibrary.at(-1)
 
     table.appendChild(newRow)
 
-for(let i = 0; i <= 3 ; i++){
+ for(let i = 0; i <= 3 ; i++){
 
    const newTableData = document.createElement("td");
    newRow.appendChild(newTableData)
@@ -54,13 +64,16 @@ for(let i = 0; i <= 3 ; i++){
 
  
 
-
 }
 
 
 
+addBook.addEventListener("click", addBookToLibrary);
+addBook.addEventListener("click", displayBooks);
 
-// newTableData.setAttribute("id",i)
+
+
+
 
 
 

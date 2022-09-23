@@ -4,26 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
     <h1>Book Library</h1>
+
+    <div class="table">
     <table id="books-table">
         <caption>My Book List</caption>
         <tr>
+            <th></th>
             <th>Book Title</th>
             <th>Author</th>
             <th>Pages #</th>
             <th>¿Read?</th>
         </tr>
         <tr>
+            <th><button class="deleteButton">X</button></th>
             <td>The Hobbit</td>
             <td>JRR Tolkien</td>
             <td>295 pages</td>
             <td>Yes</td>
         </tr>
     </table>
+    <button id="new-book">Add book</button>
+</div>
+
 </body>
 </html>

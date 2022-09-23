@@ -2,6 +2,18 @@
     font-family: sans-serif;
 }
 
+
+/*remove default button style*/
+button, button:focus{
+  outline: none;
+  border: 1px solid rgb(190,190,190);
+}
+
+button:active{
+  outline: none;
+  background-color: rgb(245, 33, 33);
+}
+
 table {
     border-collapse: collapse;
     border: 2px solid rgb(200,200,200);
@@ -12,7 +24,7 @@ table {
 
 td, th {
     border: 1px solid rgb(190,190,190);
-    padding: 10px 20px;
+    padding: 22px 25px;
   }
 
 td {
@@ -27,3 +39,25 @@ caption {
     padding: 10px;
 }
 
+button {
+    padding: 20px;
+    width: 10%;
+    height: 10%;
+}
+
+.table {
+    display:flex;
+    align-items:flex-end;
+    justify-content: center;
+    gap: 10px;
+}
+
+th:first-child {
+  padding:0px;
+}
+
+.deleteButton {
+  background-color: rgb(224, 70, 70);
+  height: 100%;
+  width: 100%;
+}
