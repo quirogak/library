@@ -40,21 +40,26 @@ const displayBooks = function() {
     const table = document.querySelector("#books-table")
     const newRow = document.createElement("tr");
 
+
+
     //delete row
     const deleteRow = document.createElement("th")
     newRow.appendChild(deleteRow)
-    
+    newRow.setAttribute("data-id",myLibrary.length-1)
+
     const deleteButton = document.createElement("button")
     deleteButton.className="deleteButton"
     deleteButton.textContent="X"
     deleteRow.appendChild(deleteButton)
+    deleteButton.addEventListener("click",deleteBook)
+
 
     //select last book added
     let currentBook = myLibrary.at(-1)
 
     table.appendChild(newRow)
 
- for(let i = 0; i <= 3 ; i++){
+ for(let i = 0; i < 4 ; i++){
 
    const newTableData = document.createElement("td");
    newRow.appendChild(newTableData)
@@ -62,15 +67,27 @@ const displayBooks = function() {
    newTableData.textContent = currentBook["item" + i]
   }
 
- 
 
 }
+
+const deleteBook = function(){
+
+ let currentPosition = myLibrary.length-1
+ const errasedRow = document.querySelector('[data-id='+'"'+currentPosition+'"'+']')
+ 
+ errasedRow.remove()
+
+}
+  
 
 
 
 addBook.addEventListener("click", addBookToLibrary);
 addBook.addEventListener("click", displayBooks);
 
+
+const delButton = document.querySelector(".deleteButton")
+delButton.addEventListener("click",deleteBook)
 
 
 
