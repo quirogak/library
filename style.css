@@ -118,7 +118,7 @@ h1 {
 }
 
 #new-book:hover {
-background-color: rgb(130, 73, 184);
+background-color: rgb(90, 45, 214);
 }
 
 ul{
@@ -166,4 +166,17 @@ input[type='radio']:checked:after {
   visibility: visible;
   border: 2px solid white;
 }
+
+.changeStatus {
+  font-size: 1.1rem;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.changeStatus:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+
+
 
