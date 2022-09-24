@@ -1,5 +1,8 @@
 const addBook = document.querySelector("#new-book")
-
+const bookName = document.querySelector("#title")
+const authorName = document.querySelector("#author")
+const numberOfPages = document.querySelector("#pages")
+const readRadio = document.getElementsByName("read_book");
 
 
 function Book(title,author,pages,read){
@@ -13,21 +16,23 @@ function Book(title,author,pages,read){
 
 }
 
-//manually set book
 
-const TheHobbit = new Book("The Hobbit "," J.R.R Tolkien"," 295 pages"," not read yet")
-
-
-
-let myLibrary = [TheHobbit]
-
+let myLibrary = []
 
 const addBookToLibrary = function()  {
 
-const item0 = prompt("Please put book name")
-const item1 = prompt("Please put author name")
-const item2 = prompt("How many pages has the book")
-const item3 = prompt("did you read it already?")
+const item0 = bookName.value
+const item1 = authorName.value
+const item2 = numberOfPages.value
+
+//check which radio has been checked
+for (let i=0; i<readRadio.length; i++) {
+  if (readRadio[i].checked) {
+      read = readRadio[i];
+  }
+}
+const item3 = read.id
+
 
 
 let newBook = new Book(item0,item1,item2,item3)
@@ -101,8 +106,11 @@ addBook.addEventListener("click", addBookToLibrary);
 addBook.addEventListener("click", displayBooks);
 
 
+
 const delButton = document.querySelector(".deleteButton")
 delButton.addEventListener("click", deleteBook)
+
+
 
 
 
