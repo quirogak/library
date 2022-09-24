@@ -15,10 +15,11 @@ function Book(title,author,pages,read){
 
 
     this.changeRead = function(){
+      if(this.item3 == "Yes"){
+        this.item3 = "No"
+      }
+      else
      this.item3 ="No"
-     readRadio.value = "No";
-     console.log(addBookToLibrary())
-     console.log(displayBooks())
     }
 
 
@@ -95,6 +96,7 @@ const displayBooks = function() {
    changeButton.className="changeStatus"
    changeButton.setAttribute("data-id",myLibrary.length-1)
    changeButton.textContent=currentBook["item3"]
+   changeButton.addEventListener("click",toggleRead)
 
 
 }
@@ -105,7 +107,7 @@ const deleteBook = function(e){
  const dataId = e.target.dataset.id
 
  if(dataId == undefined) {
-  errasedRow = document.querySelector('[data-id="0"]')
+  errasedRow = document.querySelector('[data-id="first"]')
   errasedRow.remove()
  }
 
@@ -129,6 +131,30 @@ addBook.addEventListener("click", displayBooks);
 
 const delButton = document.querySelector(".deleteButton")
 delButton.addEventListener("click", deleteBook)
+
+
+const toggleRead = function(e){
+
+  if (this.textContent == "Yes"){
+    this.textContent = "No"
+  }
+  else{
+    this.textContent = "Yes"
+  }
+  
+    const dataId = e.target.dataset.id
+    myLibrary[dataId].changeRead()
+  
+  
+    
+  }
+
+const changeButton = document.querySelector(".changeStatus")
+changeButton.addEventListener("click",toggleRead)
+
+
+
+
 
 
 
