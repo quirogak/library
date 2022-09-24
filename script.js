@@ -12,7 +12,15 @@ function Book(title,author,pages,read){
     this.item2 = pages
     this.item3 = read
 
-  
+
+
+    this.changeRead = function(){
+     this.item3 ="No"
+     readRadio.value = "No";
+     console.log(addBookToLibrary())
+     console.log(displayBooks())
+    }
+
 
 }
 
@@ -28,10 +36,11 @@ const item2 = numberOfPages.value
 //check which radio has been checked
 for (let i=0; i<readRadio.length; i++) {
   if (readRadio[i].checked) {
-      read = readRadio[i];
+      readOrNo = readRadio[i];
   }
 }
-const item3 = read.id
+
+let item3 = readOrNo.id
 
 
 
@@ -47,7 +56,7 @@ const displayBooks = function() {
     const table = document.querySelector("#books-table")
     const newRow = document.createElement("tr");
 
-
+  
 
     //delete row
     const deleteRow = document.createElement("th")
@@ -68,13 +77,24 @@ const displayBooks = function() {
 
     table.appendChild(newRow)
 
- for(let i = 0; i < 4 ; i++){
+
+ for(let i = 0; i < 3 ; i++){
 
    const newTableData = document.createElement("td");
    newRow.appendChild(newTableData)
  
    newTableData.textContent = currentBook["item" + i]
+
   }
+  
+   //change read status
+   const changeButton = document.createElement("button")
+   const newTableData = document.createElement("td")
+   newRow.appendChild(newTableData)
+   newTableData.appendChild(changeButton)
+   changeButton.className="changeStatus"
+   changeButton.setAttribute("data-id",myLibrary.length-1)
+   changeButton.textContent=currentBook["item3"]
 
 
 }
