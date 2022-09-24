@@ -1,7 +1,11 @@
 *{
     font-family: sans-serif;
+    margin: 0;
 }
 
+body {
+  background-color: rgb(243, 243, 243);
+}
 
 /*remove default button style*/
 button, button:focus{
@@ -14,23 +18,29 @@ button:active {
   background-color: rgb(219, 219, 219);
 }
 
+
 table {
+    margin: 5%;
     border-collapse: collapse;
-    border: 2px solid rgb(200,200,200);
+    border: 2px solid rgb(75, 75, 75);
     letter-spacing: 1px;
-    font-size: 0.8rem;
+    font-size: 1.1rem;
   }
 
 
 td, th {
-    border: 1px solid rgb(190,190,190);
-    padding: 22px 25px;
+    border: 1px solid rgb(121, 121, 121);
+    padding: 3vh;
   }
 
 td {
     text-align: center;
   }
 
+  tr:nth-child(odd){
+    background-color: rgb(248, 248, 248);
+  }
+  
   tr:nth-child(even){
     background-color: rgb(236, 236, 236);
   }
@@ -39,30 +49,121 @@ caption {
     padding: 10px;
 }
 
-button {
-    padding: 20px;
-    width: 10%;
-    height: 10%;
-}
-
-.table {
+.table-container {
     display:flex;
-    align-items:flex-end;
+    align-items:center;
     justify-content: center;
     gap: 10px;
+    height: 100%;
+    width: 100%;
+
 }
 
 th:first-child {
   padding:0px;
+  border-style: hidden;
+  border-right-style:solid;
+  border-right: 2px solid rgb(75, 75, 75);
+  padding-right: 10px;
+  background-color:rgb(243, 243, 243) ;
 }
+
 
 .deleteButton {
   position: relative;
   background-color: rgb(238, 89, 89);
-  height: 100%;
-  width: 100%;
+  border-radius: 10px;
+  height: 3vh;
+  width: 3vh;
+  font-weight: bold;
 }
 
-.deleteButton:active {
+.deleteButton:hover {
   background-color: rgb(236, 51, 51);
 }
+
+h1 {
+  background-color: rgba(10, 146, 180, 0.5);
+  margin: 0;
+  padding: 2%;
+  font-size: 3rem;
+}
+
+.sidebar {
+  height: 82.5vh;
+  width: 40%;
+  background-color: rgb(71, 226, 167);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5vh;
+  font-size: 1.3rem;
+
+
+}
+
+.container {
+ display: flex;
+}
+
+#new-book {
+  padding: 2vh;
+  width: 50%;
+  height: 8%;
+  border-radius: 10px;
+  margin-top: 7vh;
+  font-size: 1rem;
+  background-color: rgb(98, 78, 212);
+  color: whitesmoke;
+}
+
+#new-book:hover {
+background-color: rgb(130, 73, 184);
+}
+
+ul{
+  padding-left: 0;
+  list-style: none;
+}
+
+.read-question {
+  margin-top: 4vh;
+}
+
+.read-container {
+  display: flex;
+  margin-top: 2vh;
+  gap: 1vh;
+}
+
+li{
+margin: 10px;
+}
+
+.text-inputs > li{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+input {
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+input[type='radio']:checked:after {
+  width: 12px;
+  height: 12px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #6434e9;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
