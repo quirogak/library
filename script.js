@@ -9,6 +9,8 @@ function Book(title,author,pages,read){
     this.item2 = pages
     this.item3 = read
 
+  
+
 }
 
 //manually set book
@@ -50,8 +52,10 @@ const displayBooks = function() {
     const deleteButton = document.createElement("button")
     deleteButton.className="deleteButton"
     deleteButton.textContent="X"
+    deleteButton.setAttribute("data-id",myLibrary.length-1)
     deleteRow.appendChild(deleteButton)
-    deleteButton.addEventListener("click",deleteBook)
+    deleteButton.addEventListener("click", deleteBook)
+    
 
 
     //select last book added
@@ -70,13 +74,25 @@ const displayBooks = function() {
 
 }
 
-const deleteBook = function(){
 
- let currentPosition = myLibrary.length-1
- const errasedRow = document.querySelector('[data-id='+'"'+currentPosition+'"'+']')
+const deleteBook = function(e){
+
+ const dataId = e.target.dataset.id
+
+ if(dataId == undefined) {
+  errasedRow = document.querySelector('[data-id="0"]')
+  errasedRow.remove()
+ }
+
+ else {
+
+  const errasedRow = document.querySelector('[data-id='+'"'+dataId+'"'+']')
+  errasedRow.remove()
  
- errasedRow.remove()
 
+ }
+ 
+ 
 }
   
 
@@ -86,8 +102,7 @@ addBook.addEventListener("click", displayBooks);
 
 
 const delButton = document.querySelector(".deleteButton")
-delButton.addEventListener("click",deleteBook)
-
+delButton.addEventListener("click", deleteBook)
 
 
 
