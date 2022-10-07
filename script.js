@@ -19,9 +19,9 @@ function Book(title,author,pages,read){
         this.item3 = "No"
       }
       else
-     this.item3 ="No"
-    }
+     this.item3 = "Yes"
 
+    }
 
 }
 
@@ -143,7 +143,15 @@ const toggleRead = function(e){
   }
   
     const dataId = e.target.dataset.id
-    myLibrary[dataId].changeRead()
+  
+ 
+    if (myLibrary[dataId] == undefined) {
+      return 
+    }
+    else{
+      myLibrary[dataId].changeRead()
+    }
+    
   
   
     
