@@ -5,16 +5,16 @@ const numberOfPages = document.querySelector("#pages")
 const readRadio = document.getElementsByName("read_book");
 
 
-function Book(title,author,pages,read){
+class Book {
+  constructor(title,author,pages,read){
 
     this.item0 = title
     this.item1 = author
     this.item2 = pages
     this.item3 = read
+  }
 
-
-
-    this.changeRead = function(){
+    get changeRead() {
       if(this.item3 == "Yes"){
         this.item3 = "No"
       }
@@ -143,7 +143,7 @@ const toggleRead = function(e){
   }
   
     const dataId = e.target.dataset.id
-    myLibrary[dataId].changeRead()
+    myLibrary[dataId].changeRead
   
   
     
