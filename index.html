@@ -16,30 +16,30 @@
         <ul class="text-inputs">
             <li>
                 <label for="title">Book's name</label><br>
-                <input type="text" id="title">
+                <input type="text" id="title"  required minlength="1">
             </li>
             <li>
                 <label for="author">Author's name</label><br>
-                <input type="text" id="author">
+                <input type="text" id="author"  required minlength="1">
             </li>
             <li>
                 <label for="pages">Number of pages</label><br>
-                <input type="text" id="pages">
+                <input type="text" id="pages" required minlength="1">
             </li>
         </ul>
     
         <div class="read-question">Did you read the book?</div>
         <ul class="read-container">
             <li>
-                <input type="radio" id="Yes" name="read_book">
+                <input type="radio" id="Yes" name="read_book" required>
                 <label for="yes">Yes</label><br>
             </li>
             <li>
-                <input type="radio" id="No" name="read_book" >
+                <input type="radio" id="No" name="read_book" required >
                 <label for="no">No</label><br>
             </li>
         </ul>
-        <button id="new-book">Add book</button>
+        <button type="submit" id="new-book">Add book</button>
     </div>
 
     <div class="table-container">

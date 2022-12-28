@@ -1,3 +1,5 @@
+
+
 const addBook = document.querySelector("#new-book")
 const bookName = document.querySelector("#title")
 const authorName = document.querySelector("#author")
@@ -5,23 +7,23 @@ const numberOfPages = document.querySelector("#pages")
 const readRadio = document.getElementsByName("read_book");
 
 
-class Book {
-  constructor(title,author,pages,read){
+function Book(title,author,pages,read){
 
     this.item0 = title
     this.item1 = author
     this.item2 = pages
     this.item3 = read
-  }
 
-    get changeRead() {
+
+
+    this.changeRead = function(){
       if(this.item3 == "Yes"){
         this.item3 = "No"
       }
       else
-     this.item3 ="No"
-    }
+     this.item3 = "Yes"
 
+    }
 
 }
 
@@ -35,13 +37,16 @@ const item1 = authorName.value
 const item2 = numberOfPages.value
 
 //check which radio has been checked
+
+
 for (let i=0; i<readRadio.length; i++) {
+
   if (readRadio[i].checked) {
       readOrNo = readRadio[i];
   }
 }
 
-let item3 = readOrNo.id
+const item3 = readOrNo.id
 
 
 
@@ -98,6 +103,18 @@ const displayBooks = function() {
    changeButton.textContent=currentBook["item3"]
    changeButton.addEventListener("click",toggleRead)
 
+   const allInputs = document.querySelectorAll("input")
+   const allRadios = document.querySelectorAll("input[type=radio]")
+   
+
+   for(i = 0; i < allInputs.length; i++){
+    allInputs[i].value = ""
+   }
+
+   for(i = 0; i < allRadios.length; i++){
+    allRadios[i].checked = false
+   }
+
 
 }
 
@@ -124,10 +141,6 @@ const deleteBook = function(e){
   
 
 
-addBook.addEventListener("click", addBookToLibrary);
-addBook.addEventListener("click", displayBooks);
-
-
 
 const delButton = document.querySelector(".deleteButton")
 delButton.addEventListener("click", deleteBook)
@@ -143,7 +156,15 @@ const toggleRead = function(e){
   }
   
     const dataId = e.target.dataset.id
-    myLibrary[dataId].changeRead
+  
+ 
+    if (myLibrary[dataId] == undefined) {
+      return 
+    }
+    else{
+      myLibrary[dataId].changeRead()
+    }
+    
   
   
     
@@ -152,6 +173,65 @@ const toggleRead = function(e){
 const changeButton = document.querySelector(".changeStatus")
 changeButton.addEventListener("click",toggleRead)
 
+
+const addFormValidation = (() => {
+
+  const inputs = document.querySelectorAll("input[type=text]")
+  const radio = document.querySelector("input[type=radio]")
+
+
+  const submitInputCheck = () => {
+ 
+    if (inputs[0].validity.valueMissing || inputs[1].validity.valueMissing || inputs[2].validity.valueMissing ||radio.validity.valueMissing){
+
+      addBook.removeEventListener("click", addBookToLibrary);
+      addBook.removeEventListener("click", displayBooks);
+
+    }
+    else {
+      addBook.addEventListener("click", addBookToLibrary);
+      addBook.addEventListener("click", displayBooks);
+      
+       
+    }
+
+  }
+
+  const checkInput = (e) => {
+
+    const currentElement = document.getElementById(e.srcElement.id)
+
+
+    if(currentElement.validity.valueMissing){
+      currentElement.setCustomValidity("Missing value.")
+      currentElement.reportValidity();
+      addBook.removeEventListener("click", addBookToLibrary);
+      addBook.removeEventListener("click", displayBooks);
+      
+      
+    } else {
+      currentElement.setCustomValidity("");
+      addBook.addEventListener("click", addBookToLibrary);
+      addBook.addEventListener("click", displayBooks);
+      
+      
+    }
+
+  }
+
+  for(i = 0; i < inputs.length; i++){
+    inputs[i].addEventListener("input",(e) => {checkInput(e)})
+  }
+
+  return {submitInputCheck}
+  
+
+})();
+
+
+addBook.addEventListener("click",() => {addFormValidation.submitInputCheck()})
+readRadio[0].addEventListener("click",() => {addFormValidation.submitInputCheck()})
+readRadio[1].addEventListener("click",() => {addFormValidation.submitInputCheck()})
 
 
 
