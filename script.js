@@ -1,3 +1,5 @@
+
+
 const addBook = document.querySelector("#new-book")
 const bookName = document.querySelector("#title")
 const authorName = document.querySelector("#author")
@@ -35,13 +37,16 @@ const item1 = authorName.value
 const item2 = numberOfPages.value
 
 //check which radio has been checked
+
+
 for (let i=0; i<readRadio.length; i++) {
+
   if (readRadio[i].checked) {
       readOrNo = readRadio[i];
   }
 }
 
-let item3 = readOrNo.id
+const item3 = readOrNo.id
 
 
 
@@ -98,6 +103,18 @@ const displayBooks = function() {
    changeButton.textContent=currentBook["item3"]
    changeButton.addEventListener("click",toggleRead)
 
+   const allInputs = document.querySelectorAll("input")
+   const allRadios = document.querySelectorAll("input[type=radio]")
+   
+
+   for(i = 0; i < allInputs.length; i++){
+    allInputs[i].value = ""
+   }
+
+   for(i = 0; i < allRadios.length; i++){
+    allRadios[i].checked = false
+   }
+
 
 }
 
@@ -122,10 +139,6 @@ const deleteBook = function(e){
  
 }
   
-
-
-addBook.addEventListener("click", addBookToLibrary);
-addBook.addEventListener("click", displayBooks);
 
 
 
@@ -160,6 +173,65 @@ const toggleRead = function(e){
 const changeButton = document.querySelector(".changeStatus")
 changeButton.addEventListener("click",toggleRead)
 
+
+const addFormValidation = (() => {
+
+  const inputs = document.querySelectorAll("input[type=text]")
+  const radio = document.querySelector("input[type=radio]")
+
+
+  const submitInputCheck = () => {
+ 
+    if (inputs[0].validity.valueMissing || inputs[1].validity.valueMissing || inputs[2].validity.valueMissing ||radio.validity.valueMissing){
+
+      addBook.removeEventListener("click", addBookToLibrary);
+      addBook.removeEventListener("click", displayBooks);
+
+    }
+    else {
+      addBook.addEventListener("click", addBookToLibrary);
+      addBook.addEventListener("click", displayBooks);
+      
+       
+    }
+
+  }
+
+  const checkInput = (e) => {
+
+    const currentElement = document.getElementById(e.srcElement.id)
+
+
+    if(currentElement.validity.valueMissing){
+      currentElement.setCustomValidity("Missing value.")
+      currentElement.reportValidity();
+      addBook.removeEventListener("click", addBookToLibrary);
+      addBook.removeEventListener("click", displayBooks);
+      
+      
+    } else {
+      currentElement.setCustomValidity("");
+      addBook.addEventListener("click", addBookToLibrary);
+      addBook.addEventListener("click", displayBooks);
+      
+      
+    }
+
+  }
+
+  for(i = 0; i < inputs.length; i++){
+    inputs[i].addEventListener("input",(e) => {checkInput(e)})
+  }
+
+  return {submitInputCheck}
+  
+
+})();
+
+
+addBook.addEventListener("click",() => {addFormValidation.submitInputCheck()})
+readRadio[0].addEventListener("click",() => {addFormValidation.submitInputCheck()})
+readRadio[1].addEventListener("click",() => {addFormValidation.submitInputCheck()})
 
 
 
